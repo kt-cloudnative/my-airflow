@@ -31,20 +31,20 @@ dag = DAG(
 k8s_resource_requirements = k8s.V1ResourceRequirements(
     requests={"cpu": "0.2","memory": "100Mi"}, limits={"cpu": "0.5","memory": "512Mi"}
 )
-        
+
 start = DummyOperator(task_id="start", dag=dag)
 
 run = KubernetesPodOperator(
     task_id="kubernetes-pod-operator",
-    namespace='default',
-    in_cluster=True,
+    namespace='airflow',
+    in_cluster=False,
     image='nginx',
     #image='ghcr.io/rohminji/batch:master',
     name="db-job",
     is_delete_operator_pod=True,
+    kubernetes_conn_id="kubernetes_default",
     get_logs=True,
-    #service_account_name='edu',
-    # resources = k8s_resource_requirements,
+    container_resources = k8s_resource_requirements,
     dag=dag,
 )
 
