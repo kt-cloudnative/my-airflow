@@ -671,8 +671,7 @@ with DAG(
     db_test2 = PythonOperator(
         task_id='db_connection_test',
         python_callable=test_db_connection,
-        dag=dag,
-        do_xcom_push=False
+        dag=dag
     )
     
     # 네트워크 연결 테스트 태스크
