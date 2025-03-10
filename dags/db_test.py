@@ -13,6 +13,8 @@ from airflow.utils.helpers import chain, cross_downstream
 #    KubernetesPodOperator,
 #)
 
+from airflow import DAG
+
 from airflow.providers.cncf.kubernetes.operators.pod import KubernetesPodOperator
 
 import pendulum
