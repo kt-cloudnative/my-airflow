@@ -14,8 +14,8 @@ from airflow.providers.cncf.kubernetes.operators.kubernetes_pod import (
 )
 import pendulum
 local_tz = pendulum.timezone("Asia/Seoul")
-import sys
-sys.path.append('/opt/bitnami/airflow/dags/git_sa-common')
+#import sys
+#sys.path.append('/opt/bitnami/airflow/dags/git_sa-common')
 
 import time
 import socket
@@ -26,17 +26,17 @@ import random
 import threading
 import concurrent.futures
 
-from icis_common import *
-COMMON = ICISCmmn(DOMAIN='sa',ENV='sit', NAMESPACE='t-sa'
-                , WORKFLOW_NAME='sytest',WORKFLOW_ID='61085f55fc364662944f210b7e9d7333', APP_NAME='NBSS_TSA', CHNL_TYPE='TO', USER_ID='91337909')
+#from icis_common import *
+#COMMON = ICISCmmn(DOMAIN='sa',ENV='sit', NAMESPACE='t-sa'
+#                , WORKFLOW_NAME='sytest',WORKFLOW_ID='61085f55fc364662944f210b7e9d7333', APP_NAME='NBSS_TSA', CHNL_TYPE='TO', USER_ID='91337909')
 
 # 데이터베이스 연결 정보를 전역 변수로 정의
 DB_CONFIG = {
-    'host': "10.217.137.66",
-    'port': "5444",
-    'database': "airflowsit",
-    'user': "afsitown",
-    'password': "Rkswkd2024!",
+    'host': "my-postgresql.airflow.svc.cluster.local",
+    'port': "5432",
+    'database': "edu",
+    'user': "edu",
+    'password': "New1234!",
     'connect_timeout': 600
 }
 
