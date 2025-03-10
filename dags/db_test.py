@@ -48,7 +48,6 @@ DB_CONFIG = {
 
 with DAG(
     dag_id='db_test',
-    default_args=args,
     schedule_interval='*/2 * * * *',
     start_date= datetime(2024, 5, 28, 0, 0, 00, tzinfo=local_tz),
     end_date= None
