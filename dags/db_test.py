@@ -50,8 +50,7 @@ with DAG(
     dag_id='db_test',
     schedule_interval='*/2 * * * *',
     start_date= datetime(2025, 3, 10, 0, 0, 00, tzinfo=local_tz),
-    end_date= None,
-    paused= False
+    end_date= None
     #dagrun_timeout=timedelta(minutes=60),
     #tags=['example', 'example3'],
     #params={"example_key": "example_value"},
