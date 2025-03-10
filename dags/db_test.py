@@ -19,8 +19,7 @@ from airflow.providers.cncf.kubernetes.operators.pod import KubernetesPodOperato
 
 import pendulum
 local_tz = pendulum.timezone("Asia/Seoul")
-#import sys
-#sys.path.append('/opt/bitnami/airflow/dags/git_sa-common')
+
 
 import time
 import socket
@@ -30,10 +29,6 @@ import logging
 import random
 import threading
 import concurrent.futures
-
-#from icis_common import *
-#COMMON = ICISCmmn(DOMAIN='sa',ENV='sit', NAMESPACE='t-sa'
-#                , WORKFLOW_NAME='sytest',WORKFLOW_ID='61085f55fc364662944f210b7e9d7333', APP_NAME='NBSS_TSA', CHNL_TYPE='TO', USER_ID='91337909')
 
 # 데이터베이스 연결 정보를 전역 변수로 정의
 DB_CONFIG = {
@@ -66,8 +61,32 @@ with DAG(
 #    ,'max_active_runs':1
 #})as dag:
 
-    # authCheck = COMMON.getICISAuthCheckWflow('61085f55fc364662944f210b7e9d7333')
 
+    def simnple_db_connection(**context):
+        logger = logging.getLogger(__name__)
+        results = []
+        
+        logger.info(f"DB 연결 테스트 시작 - {DB_CONFIG['host']}:{DB_CONFIG['port']} (100회 연속 테스트)")
+        
+        # 100회 반복 DB 연결 테스트
+        for i in range(100):
+            try:
+                conn = psycopg2.connect(
+                    dbname=DB_CONFIG['database'],
+                    user=DB_CONFIG['user'],
+                    password=DB_CONFIG['password'],
+                    host=DB_CONFIG['host'],
+                    port=DB_CONFIG['port'],
+                    connect_timeout=DB_CONFIG['connect_timeout']
+                )
+                cursor = conn.cursor()
+                cursor.execute("SELECT 1")
+                cursor.fetchone()
+                conn.close()
+            except Exception as e:               
+                raise
+            
+    
     def test_db_connection(**context):
         logger = logging.getLogger(__name__)
         results = []
@@ -670,7 +689,7 @@ with DAG(
     # DB 연결 테스트 태스크
     db_test2 = PythonOperator(
         task_id='db_connection_test',
-        python_callable=test_db_connection,
+        python_callable=simnple_db_connection,
         dag=dag
     )
     
@@ -708,4 +727,4 @@ with DAG(
 
     ##[db_test, network_test] >> db_performance_test >> metadata_test
 
-    ##db_test2
+    db_test2
