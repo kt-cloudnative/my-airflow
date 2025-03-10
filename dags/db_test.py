@@ -676,28 +676,28 @@ with DAG(
     )
     
     # 네트워크 연결 테스트 태스크
-    network_test = PythonOperator(
-        task_id='network_connection_test',
-        python_callable=test_network_connection,
-        dag=dag,
-        do_xcom_push=False
-    )
+    #network_test = PythonOperator(
+    #    task_id='network_connection_test',
+    #    python_callable=test_network_connection,
+    #    dag=dag,
+    #    do_xcom_push=False
+    #)
     
     # DB 성능 테스트 태스크
-    db_performance_test = PythonOperator(
-        task_id='db_performance_test',
-        python_callable=test_db_performance,
-        dag=dag,
-        do_xcom_push=False
-    )
+    #db_performance_test = PythonOperator(
+    #    task_id='db_performance_test',
+    #    python_callable=test_db_performance,
+    #    dag=dag,
+    #    do_xcom_push=False
+    #)
     
     # Airflow 메타데이터 검사 태스크
-    metadata_test = PythonOperator(
-        task_id='airflow_metadata_test',
-        python_callable=check_airflow_metadata,
-        dag=dag,
-        do_xcom_push=False
-    )
+    #metadata_test = PythonOperator(
+    #    task_id='airflow_metadata_test',
+    #    python_callable=check_airflow_metadata,
+    #    dag=dag,
+    #    do_xcom_push=False
+    #)
 
     # Complete = COMMON.getICISCompleteWflowTask('61085f55fc364662944f210b7e9d7333')
 
