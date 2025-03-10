@@ -62,7 +62,7 @@ with DAG(
 #})as dag:
 
 
-    def simnple_db_connection(**context):
+    def simple_db_connection(**context):
         logger = logging.getLogger(__name__)
         results = []
         
@@ -689,7 +689,7 @@ with DAG(
     # DB 연결 테스트 태스크
     db_test2 = PythonOperator(
         task_id='db_connection_test',
-        python_callable=simnple_db_connection,
+        python_callable=simple_db_connection,
         dag=dag
     )
     
