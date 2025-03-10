@@ -668,7 +668,7 @@ with DAG(
 
     
     # DB 연결 테스트 태스크
-    db_test = PythonOperator(
+    db_test2 = PythonOperator(
         task_id='db_connection_test',
         python_callable=test_db_connection,
         dag=dag,
@@ -709,4 +709,4 @@ with DAG(
 
     ##[db_test, network_test] >> db_performance_test >> metadata_test
 
-    db_test >> Complete
+    db_test2
