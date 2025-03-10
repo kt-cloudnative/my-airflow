@@ -7,7 +7,7 @@ from sqlalchemy.exc import OperationalError
 # DB 연결 정보 (Airflow Connections 사용 권장)
 DB_TYPE = "postgresql"  # 또는 "mysql+pymysql"
 DB_HOST = "shclub.synology.me"
-DB_PORT = "5432"  # MySQL은 3306
+DB_PORT = "35444"  # MySQL은 3306
 DB_USER = "edu"
 DB_PASSWORD = "New1234!"
 DB_NAME = "edu"
@@ -41,7 +41,7 @@ default_args = {
 with DAG(
     dag_id="db_health_check",
     default_args=default_args,
-    schedule_interval="*/30 * * * *",  # 30분마다 실행
+    schedule_interval="*/2 * * * *",  # 30분마다 실행
     catchup=False,
     tags=["monitoring", "healthcheck"],
 ) as dag:
