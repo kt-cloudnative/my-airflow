@@ -9,9 +9,12 @@ from airflow.operators.empty import EmptyOperator
 from airflow.operators.subdag import SubDagOperator
 from airflow.utils.trigger_rule import TriggerRule
 from airflow.utils.helpers import chain, cross_downstream
-from airflow.providers.cncf.kubernetes.operators.kubernetes_pod import (
-    KubernetesPodOperator,
-)
+#from airflow.providers.cncf.kubernetes.operators.kubernetes_pod import (
+#    KubernetesPodOperator,
+#)
+
+from airflow.providers.cncf.kubernetes.operators.pod import KubernetesPodOperator
+
 import pendulum
 local_tz = pendulum.timezone("Asia/Seoul")
 #import sys
