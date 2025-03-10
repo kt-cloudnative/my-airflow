@@ -32,8 +32,8 @@ import concurrent.futures
 
 # 데이터베이스 연결 정보를 전역 변수로 정의
 DB_CONFIG = {
-    'host': "my-postgresql.airflow.svc.cluster.local",
-    'port': "5432",
+    'host': "shclub.synology.me",
+    'port': "35444",
     'database': "edu",
     'user': "edu",
     'password': "New1234!",
