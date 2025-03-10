@@ -41,14 +41,26 @@ DB_CONFIG = {
 }
 
 
-with COMMON.getICISDAG({
-    'dag_id':'icis-sa-sytest-sit'
-    ,'schedule_interval':'*/2 * * * *'
-    ,'start_date': datetime(2024, 5, 28, 0, 0, 00, tzinfo=local_tz)
-    ,'end_date': None
-    ,'paused': False
-    ,'max_active_runs':1
-})as dag:
+with DAG(
+    dag_id='db_test',
+    default_args=args,
+    schedule_interval='*/2 * * * *',
+    start_date= datetime(2024, 5, 28, 0, 0, 00, tzinfo=local_tz),
+    end_date: None
+    #dagrun_timeout=timedelta(minutes=60),
+    #tags=['example', 'example3'],
+    #params={"example_key": "example_value"},
+) as dag:
+    
+
+#with COMMON.getICISDAG({
+#    'dag_id':'icis-sa-sytest-sit'
+#    ,'schedule_interval':'*/2 * * * *'
+#    ,'start_date': datetime(2024, 5, 28, 0, 0, 00, tzinfo=local_tz)
+#    ,'end_date': None
+#    ,'paused': False
+#    ,'max_active_runs':1
+#})as dag:
 
     # authCheck = COMMON.getICISAuthCheckWflow('61085f55fc364662944f210b7e9d7333')
 
