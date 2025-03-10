@@ -710,4 +710,4 @@ with DAG(
 
     ##[db_test, network_test] >> db_performance_test >> metadata_test
 
-    db_test2
+    ##db_test2
