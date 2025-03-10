@@ -705,8 +705,8 @@ with DAG(
 
     # db_test >> network_test >> db_performance_test >> metadata_test
     
-    db_performance_test.trigger_rule = 'none_failed_min_one_success'
+    ##db_performance_test.trigger_rule = 'none_failed_min_one_success'
 
-    #[db_test, network_test] >> db_performance_test >> metadata_test
+    ##[db_test, network_test] >> db_performance_test >> metadata_test
 
     db_test
